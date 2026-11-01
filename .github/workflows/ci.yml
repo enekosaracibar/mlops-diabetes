@@ -1,0 +1,52 @@
+# CI/CD: ejecuta el pipeline MLOps completo en cada push a main o master
+name: MLOps CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  mlops-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v6
+
+      - name: Instalar Python 3.12
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: 1. Extracción de datos
+        run: python -m src.data.extract_data
+
+      - name: 2. Validación de datos
+        run: python -m src.data.validate_data
+
+      - name: 3. Limpieza de datos
+        run: python -m src.data.clean_data
+
+      - name: 4. Entrenamiento con MLflow
+        run: python -m src.models.train
+
+      - name: 5. Registro del modelo
+        run: python -m src.models.register_model
+
+      - name: 6. Evaluación y asignación de champion
+        run: python -m src.models.evaluate_model
+
+      - name: Guardar los resultados de MLflow
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: mlflow-resultados
+          path: |
+            mlflow.db
+            mlruns/
+          retention-days: 7
