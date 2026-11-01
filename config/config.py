@@ -16,3 +16,11 @@ PROCESSED_DATA_PATH = ROOT_DIR / "data" / "processed" / "diabetes_clean.csv"
 # Columnas del dataset
 FEATURES = ["age", "sex", "bmi", "bp", "s1", "s2", "s3", "s4", "s5", "s6"]
 TARGET = "target"
+
+# Entrenamiento
+TEST_SIZE = 0.2
+RANDOM_STATE = 42
+
+# MLflow
+MLFLOW_TRACKING_URI = f"sqlite:///{(ROOT_DIR / 'mlflow.db').as_posix()}"
+EXPERIMENT_NAME = "diabetes-regresion"
