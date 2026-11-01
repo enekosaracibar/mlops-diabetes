@@ -24,3 +24,8 @@ RANDOM_STATE = 42
 # MLflow
 MLFLOW_TRACKING_URI = f"sqlite:///{(ROOT_DIR / 'mlflow.db').as_posix()}"
 EXPERIMENT_NAME = "diabetes-regresion"
+
+# Model Registry
+MODEL_NAME = "diabetes-model"
+MODEL_ALIAS = "champion"
+RMSE_THRESHOLD = 60.0
