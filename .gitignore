@@ -218,3 +218,15 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# ==== Proyecto MLOps ====
+# Datos: se regeneran ejecutando el pipeline
+data/
+
+# Resultados de MLflow: se regeneran al entrenar
+mlruns/
+mlartifacts/
+mlflow.db
+
+# Material del curso: no se publica
+material/

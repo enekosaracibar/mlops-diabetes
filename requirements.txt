@@ -1,0 +1,19 @@
+# Datos y modelos
+pandas==3.1.0
+numpy==2.5.4
+scikit-learn==1.9.1
+
+# Notebook exploratorio
+matplotlib==3.11.2
+seaborn==0.13.2
+ipykernel==7.4.0
+
+# Validación de datos y de la API
+pydantic==2.14.2
+
+# Seguimiento y registro de modelos
+mlflow==3.17.2
+
+# API
+fastapi==0.162.0
+uvicorn==0.54.0
