@@ -4,6 +4,7 @@ Cada paso del proyecto añade aquí sus valores para no repetirlos en los script
 """
 
 from pathlib import Path
+import os
 
 # Carpeta raíz del proyecto (la que contiene config/, src/, data/...)
 ROOT_DIR = Path(__file__).resolve().parent.parent
@@ -27,5 +28,5 @@ EXPERIMENT_NAME = "diabetes-regresion"
 
 # Model Registry
 MODEL_NAME = "diabetes-model"
-MODEL_ALIAS = "champion"
+MODEL_ALIAS = os.getenv("MODEL_ALIAS", "champion")
 RMSE_THRESHOLD = 60.0

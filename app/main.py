@@ -85,7 +85,7 @@ def health():
     return {"status": "ok", "model_loaded": state["model"] is not None}
 
 
-@app.get("/model-info")
+@app.get("/model-info", responses={503: {"description": "Modelo no cargado"}})
 def model_info():
     """Devuelve qué modelo se está sirviendo."""
     if state["model"] is None:
@@ -93,7 +93,14 @@ def model_info():
     return state["info"]
 
 
-@app.post("/predict", response_model=PredictionResponse)
+@app.post(
+       "/predict",
+       response_model=PredictionResponse,
+       responses={
+           500: {"description": "Error al generar la predicción"},
+           503: {"description": "Modelo no cargado"},
+       },
+)
 def predict(patient: PatientFeatures):
     """Devuelve la predicción del modelo champion para un paciente."""
     if state["model"] is None:
