@@ -221,7 +221,7 @@ __marimo__/
 
 # ==== Proyecto MLOps ====
 # Datos: se regeneran ejecutando el pipeline
-data/
+/data/
 
 # Resultados de MLflow: se regeneran al entrenar
 mlruns/
